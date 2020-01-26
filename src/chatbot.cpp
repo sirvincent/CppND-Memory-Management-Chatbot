@@ -1,3 +1,5 @@
+#include <wx/bitmap.h>
+
 #include <iostream>
 #include <random>
 #include <algorithm>
@@ -44,7 +46,64 @@ ChatBot::~ChatBot()
 
 //// STUDENT CODE
 ////
+// TODO: which policy do we follow? The Chatbot is moved through the code it is the exclusive
+//       owner _image. So exclusive ownership?
+ChatBot::ChatBot(ChatBot &source)
+{
+  std::cout << "ChatBot Copy Constructor" << std::endl;
 
+  _image = source._image;
+  _chatLogic = source._chatLogic;
+  _rootNode = source._rootNode;
+
+  source._image = NULL;
+  source._chatLogic = nullptr;
+  source._rootNode = nullptr;
+}
+
+ChatBot& ChatBot::operator=(ChatBot &source)
+{
+  std::cout << "ChatBot Copy Assignment Constructor" << std::endl;
+
+  _image = source._image;
+  _chatLogic = source._chatLogic;
+  _rootNode = source._rootNode;
+
+  source._image = NULL;
+  source._chatLogic = nullptr;
+  source._rootNode = nullptr;
+
+  return *this;
+}
+
+ChatBot::ChatBot(ChatBot &&source)
+{
+  std::cout << "ChatBot Move Constructor" << std::endl;
+
+  _image = source._image;
+  _chatLogic = source._chatLogic;
+  _rootNode = source._rootNode;
+
+  source._image = NULL;
+  source._chatLogic = nullptr;
+  source._rootNode = nullptr;
+
+}
+
+ChatBot& ChatBot::operator=(ChatBot &&source)
+{
+  std::cout << "ChatBot Move Assignment Constructor" << std::endl;
+
+  _image = source._image;
+  _chatLogic = source._chatLogic;
+  _rootNode = source._rootNode;
+
+  source._image = NULL;
+  source._chatLogic = nullptr;
+  source._rootNode = nullptr;
+
+  return *this;
+}
 ////
 //// EOF STUDENT CODE
 
