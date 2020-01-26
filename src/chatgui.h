@@ -1,7 +1,22 @@
 #ifndef CHATGUI_H_
 #define CHATGUI_H_
 
+#define wxUSE_STATTEXT 1
+#define wxUSE_STATBMP 1
+#define wxUSE_TEXTCTRL 1
+
 #include <wx/wx.h>
+#include <wx/sizer.h>
+#include <wx/windowid.h>
+#include <wx/scrolwin.h>
+#include <wx/bitmap.h>
+#include <wx/statbmp.h>
+#include <wx/stattext.h>
+#include <wx/frame.h>
+#include <wx/textctrl.h>
+
+#include <memory>
+
 
 class ChatLogic; // forward declaration
 

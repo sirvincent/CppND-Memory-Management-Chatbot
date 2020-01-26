@@ -1,7 +1,13 @@
+#define wxUSE_IMAGE 1
+
 #include <wx/filename.h>
 #include <wx/colour.h>
 #include <wx/image.h>
+#include <wx/app.h>
+
 #include <string>
+#include <iostream>
+
 #include "chatbot.h"
 #include "chatlogic.h"
 #include "chatgui.h"
