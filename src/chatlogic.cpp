@@ -35,6 +35,8 @@ ChatLogic::~ChatLogic()
     // delete chatbot instance
     delete _chatBot;
 
+    _currentNode = nullptr;
+    _panelDialog = nullptr;
 
     ////
     //// EOF STUDENT CODE
