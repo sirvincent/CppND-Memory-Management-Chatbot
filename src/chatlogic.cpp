@@ -16,13 +16,9 @@ ChatLogic::ChatLogic()
 {
     //// STUDENT CODE
     ////
-
-    // create instance of chatbot
-    _chatBot = new ChatBot("../images/chatbot.png");
-
-    // add pointer to chatlogic so that chatbot answers can be passed on to the GUI
-    _chatBot->SetChatLogicHandle(this);
-
+    _currentNode = nullptr;
+    _chatBot = nullptr;
+    _panelDialog = nullptr;
     ////
     //// EOF STUDENT CODE
 }
@@ -31,11 +27,8 @@ ChatLogic::~ChatLogic()
 {
     //// STUDENT CODE
     ////
-
-    // delete chatbot instance
-    delete _chatBot;
-
     _currentNode = nullptr;
+    _chatBot = nullptr;
     _panelDialog = nullptr;
 
     ////
@@ -207,10 +200,16 @@ void ChatLogic::LoadAnswerGraphFromFile(std::string filename)
         }
     }
 
+    ChatBot chatbot("../images/chatbot.png");
+    // add pointer to chatlogic so that chatbot answers can be passed on to the GUI
+    chatbot.SetChatLogicHandle(this);
     // add chatbot to graph root node
-    _chatBot->SetRootNode(rootNode);
-    rootNode->MoveChatbotHere(_chatBot);
-    
+    chatbot.SetRootNode(rootNode);
+
+    // since ownership is moved, chatlogic still needs to keep a raw ptr to the object
+    SetChatbotHandle(rootNode->getChatBot());
+    rootNode->MoveChatbotHere(std::move(chatbot));
+
     ////
     //// EOF STUDENT CODE
 }

@@ -42,7 +42,6 @@ public:
     ~ChatBotPanelDialog();
 
     // getter / setter
-    // TODO: correct?
     ChatLogic *GetChatLogicHandle() { return _chatLogic.get(); }
 
     // events

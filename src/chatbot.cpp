@@ -14,7 +14,7 @@
 ChatBot::ChatBot()
 {
     // invalidate data handles
-    _image = nullptr;
+    _image = NULL;
     _chatLogic = nullptr;
     _rootNode = nullptr;
 }
@@ -46,18 +46,18 @@ ChatBot::~ChatBot()
 
 //// STUDENT CODE
 ////
-// TODO: which policy do we follow? The Chatbot is moved through the code it is the exclusive
-//       owner _image. So exclusive ownership?
+// follow exclusive ownership policy
 ChatBot::ChatBot(ChatBot &source)
 {
   std::cout << "ChatBot Copy Constructor" << std::endl;
 
   _image = source._image;
-  _chatLogic = source._chatLogic;
-  _rootNode = source._rootNode;
-
   source._image = NULL;
+
+  _chatLogic = source._chatLogic;
   source._chatLogic = nullptr;
+
+  _rootNode = source._rootNode;
   source._rootNode = nullptr;
 }
 
@@ -66,11 +66,12 @@ ChatBot& ChatBot::operator=(ChatBot &source)
   std::cout << "ChatBot Copy Assignment Constructor" << std::endl;
 
   _image = source._image;
-  _chatLogic = source._chatLogic;
-  _rootNode = source._rootNode;
-
   source._image = NULL;
+
+  _chatLogic = source._chatLogic;
   source._chatLogic = nullptr;
+
+  _rootNode = source._rootNode;
   source._rootNode = nullptr;
 
   return *this;
@@ -81,12 +82,19 @@ ChatBot::ChatBot(ChatBot &&source)
   std::cout << "ChatBot Move Constructor" << std::endl;
 
   _image = source._image;
-  _chatLogic = source._chatLogic;
-  _rootNode = source._rootNode;
-
   source._image = NULL;
+
+  _chatLogic = source._chatLogic;
   source._chatLogic = nullptr;
+
+  _rootNode = source._rootNode;
   source._rootNode = nullptr;
+
+  if (_chatLogic)
+  {
+    _chatLogic->SetChatbotHandle(this);
+  }
+
 
 }
 
@@ -95,12 +103,18 @@ ChatBot& ChatBot::operator=(ChatBot &&source)
   std::cout << "ChatBot Move Assignment Constructor" << std::endl;
 
   _image = source._image;
-  _chatLogic = source._chatLogic;
-  _rootNode = source._rootNode;
-
   source._image = NULL;
+
+  _chatLogic = source._chatLogic;
   source._chatLogic = nullptr;
+
+  _rootNode = source._rootNode;
   source._rootNode = nullptr;
+
+  if (_chatLogic)
+  {
+    _chatLogic->SetChatbotHandle(this);
+  }
 
   return *this;
 }
