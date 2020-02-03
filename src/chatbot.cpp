@@ -46,33 +46,28 @@ ChatBot::~ChatBot()
 
 //// STUDENT CODE
 ////
-// follow exclusive ownership policy
-ChatBot::ChatBot(ChatBot &source)
+ChatBot::ChatBot(ChatBot const &source)
 {
   std::cout << "ChatBot Copy Constructor" << std::endl;
 
+  _image = new wxBitmap();
   _image = source._image;
-  source._image = NULL;
 
   _chatLogic = source._chatLogic;
-  source._chatLogic = nullptr;
 
   _rootNode = source._rootNode;
-  source._rootNode = nullptr;
 }
 
-ChatBot& ChatBot::operator=(ChatBot &source)
+ChatBot& ChatBot::operator=(ChatBot const &source)
 {
   std::cout << "ChatBot Copy Assignment Constructor" << std::endl;
 
+  _image = new wxBitmap();
   _image = source._image;
-  source._image = NULL;
 
   _chatLogic = source._chatLogic;
-  source._chatLogic = nullptr;
 
   _rootNode = source._rootNode;
-  source._rootNode = nullptr;
 
   return *this;
 }
