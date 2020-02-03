@@ -30,8 +30,8 @@ public:
     //// STUDENT CODE
     ////
     ///
-    ChatBot(ChatBot &source);
-    ChatBot &operator=(ChatBot &source);
+    ChatBot(ChatBot const &source);
+    ChatBot &operator=(ChatBot const &source);
     ChatBot(ChatBot &&source);
     ChatBot &operator=(ChatBot &&source);
 
