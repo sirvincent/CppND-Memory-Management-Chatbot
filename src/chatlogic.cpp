@@ -206,8 +206,6 @@ void ChatLogic::LoadAnswerGraphFromFile(std::string filename)
     // add chatbot to graph root node
     chatbot.SetRootNode(rootNode);
 
-    // since ownership is moved, chatlogic still needs to keep a raw ptr to the object
-    SetChatbotHandle(rootNode->getChatBot());
     rootNode->MoveChatbotHere(std::move(chatbot));
 
     ////
